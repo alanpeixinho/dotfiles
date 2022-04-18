@@ -1,4 +1,4 @@
-$EDITOR='vim'
+$EDITOR='nvim'
 $PATH.append("~/.local/bin")
 $PATH.append("/home/peixinho/anaconda3/bin")
 

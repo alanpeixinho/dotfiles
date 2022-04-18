@@ -113,6 +113,9 @@ let g:vim_isort_config_overrides = { 'float_to_top': 'true' }
 "allow mouse input
 set mouse=a
 
+"external clipboard
+set clipboard=unnamedplus
+
 let g:NERDTreeWinSize=45
 
 "Set the colorscheme (installed in .vim dir)
