@@ -53,6 +53,17 @@ Plug 'pixelneo/vim-python-docstring'
 "auto format for several external programs
 Plug 'Chiel92/vim-autoformat'
 
+"show git info from line
+Plug 'rhysd/git-messenger.vim'
+
+"case transformation and invariant case search/replace
+Plug 'tpope/vim-abolish'
+
+"show git info
+Plug 'zivyangll/git-blame.vim'
+
+"helper to highlight and remove unecessary whitespace
+Plug 'ntpeters/vim-better-whitespace'
 
 call plug#end()
 
@@ -62,6 +73,10 @@ nnoremap <S-Right> :tabnext<CR>
 
 "default yapf style as google style
 let g:yapf_style = "google"
+
+if !exists('g:formatters_typescriptreact')
+    let g:formatters_typescriptreact = ['tsfmt']
+endif
 
 " Start NERDTree when Vim starts with a directory argument.
 autocmd StdinReadPre * let s:std_in=1
@@ -103,6 +118,11 @@ nmap <C-i>   <Plug>ClangFormat
 vmap <C-i>   <Plug>ClangFormat<CR>gv
 
 xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)w
+
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>"
+
+autocmd BufNewFile,BufRead *.xonsh set syntax=python
 
 if &diff
     set noreadonly
