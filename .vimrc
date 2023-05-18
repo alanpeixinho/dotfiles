@@ -122,6 +122,19 @@ nmap <leader>a  <Plug>(coc-codeaction-selected)w
 
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>"
 
+" Toggle transparent background
+let t:is_transparent = 0
+function! Toggle_transparent()
+    if t:is_transparent == 0
+        hi Normal guibg=NONE ctermbg=NONE
+        let t:is_transparent = 1
+    else
+        set background=dark
+        let t:is_transparent = 0
+    endif
+endfunction
+nnoremap <leader>t : call Toggle_transparent()<CR>
+
 autocmd BufNewFile,BufRead *.xonsh set syntax=python
 
 if &diff
