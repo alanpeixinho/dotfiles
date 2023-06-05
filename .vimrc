@@ -53,17 +53,23 @@ Plug 'pixelneo/vim-python-docstring'
 "auto format for several external programs
 Plug 'Chiel92/vim-autoformat'
 
-"show git info from line
-Plug 'rhysd/git-messenger.vim'
-
 "case transformation and invariant case search/replace
 Plug 'tpope/vim-abolish'
 
 "show git info
 Plug 'zivyangll/git-blame.vim'
 
+"git diff
+Plug 'airblade/vim-gitgutter'
+
 "helper to highlight and remove unecessary whitespace
 Plug 'ntpeters/vim-better-whitespace'
+
+"Git tools
+"Plug 'tpope/vim-fugitive'
+
+"Chapel lang highlight
+Plug '~/.chapel-highlight-vim/'
 
 call plug#end()
 
@@ -94,9 +100,12 @@ noremap  <C-T>  :FloatermToggle<CR>
 noremap! <C-T>  <Esc>:FloatermToggle<CR>
 tnoremap <C-T>  <C-\><C-n>:FloatermToggle<CR>
 
+
+
 "fzf remap for file search
 nnoremap <C-F> :BLines<CR>
 nnoremap <C-G> :Files<CR>
+let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
 
 "prevent fzf file search to open a file inside nerdtree buffer
 "au BufEnter * if bufname('#') =~ 'NERD_tree' && bufname('%') !~ 'NERD_tree' && winnr('$') > 1 | b# | exe "normal! \<c-w>\<c-w>" | :blast | endif
@@ -106,6 +115,9 @@ nnoremap <C-D> :call CocAction('jumpDefinition')<CR>
 
 "rename symbol
 nmap <leader>rn <Plug>(coc-rename)
+
+"git blame
+nnoremap <C-b> :<C-u>call gitblame#echo()<CR>
 
 "ctrl+/ toggle comment lines
 nmap <C-_>   <Plug>NERDCommenterToggle
@@ -121,6 +133,19 @@ xmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>a  <Plug>(coc-codeaction-selected)w
 
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>"
+
+" Toggle transparent background
+let t:is_transparent = 0
+function! Toggle_transparent()
+    if t:is_transparent == 0
+        hi Normal guibg=NONE ctermbg=NONE
+        let t:is_transparent = 1
+    else
+        set background=dark
+        let t:is_transparent = 0
+    endif
+endfunction
+nnoremap <leader>t : call Toggle_transparent()<CR>
 
 autocmd BufNewFile,BufRead *.xonsh set syntax=python
 
