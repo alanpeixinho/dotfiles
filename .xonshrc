@@ -1,3 +1,5 @@
+import os
+
 $PATH.append("~/.local/bin")
 $PATH.append("/home/peixinho/anaconda3/bin")
 $PATH.append("~/.cargo/bin")
@@ -9,10 +11,19 @@ def __fuckit(fuck_path, fuck_hist):
     out, _ = p.communicate()
     execx(out.decode('utf-8'))
 
+TERM = os.environ.get("TERM", "")
+TMUX = os.environ.get("TMUX", "")
+DISPLAY = os.environ.get("DISPLAY", "")
+
+if "tmux" not in TERM and "screen" not in TERM and DISPLAY:
+    tmux new-session -A -s main
+
 aliases['dotfiles']="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 
 aliases['fuck'] = "__fuckit($(which thefuck), $(history -1))"
-aliases['vpnon'] = 'globalprotect connect -p wr.alameda.windriver.com' 
-aliases['vpnoff'] = 'globalprotect disconnect' 
-aliases['vpnstart'] = '/opt/paloaltonetworks/globalprotect/PanGPA start &' 
-aliases['vpnstatus'] = 'globalprotect show --status'
+
+$EDITOR="vim"
+
+$CUDA_HOME="/opt/cuda/"
+$PATH.append("/opt/cuda/bin/")
+$PATH.append("/home/peixinho/.yarn/bin")
