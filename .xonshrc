@@ -25,5 +25,7 @@ aliases['fuck'] = "__fuckit($(which thefuck), $(history -1))"
 $EDITOR="vim"
 
 $CUDA_HOME="/opt/cuda/"
+$CUDA_SDK_PATH="/opt/cuda/"
 $PATH.append("/opt/cuda/bin/")
 $PATH.append("/home/peixinho/.yarn/bin")
+$CUDA_HOST_COMPILER="gcc-12"

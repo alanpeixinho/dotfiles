@@ -71,6 +71,8 @@ Plug 'ntpeters/vim-better-whitespace'
 "Chapel lang highlight
 Plug '~/.chapel-highlight-vim/'
 
+Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown', 'do': 'yarn install'}
+
 call plug#end()
 
 "navigate tabs with shift+left shift+right
@@ -111,10 +113,12 @@ let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
 "au BufEnter * if bufname('#') =~ 'NERD_tree' && bufname('%') !~ 'NERD_tree' && winnr('$') > 1 | b# | exe "normal! \<c-w>\<c-w>" | :blast | endif
 
 "goto definition
-nnoremap <C-D> :call CocAction('jumpDefinition')<CR>
+nmap <leader>gd :call CocAction('jumpDefinition')<CR>
 
 "rename symbol
 nmap <leader>rn <Plug>(coc-rename)
+
+nmap <leader>fr <Plug>(coc-references)
 
 "git blame
 nnoremap <C-b> :<C-u>call gitblame#echo()<CR>
