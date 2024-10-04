@@ -62,16 +62,21 @@ Plug 'zivyangll/git-blame.vim'
 "git diff
 Plug 'airblade/vim-gitgutter'
 
+"git merge
+Plug 'samoshkin/vim-mergetool'
+
 "helper to highlight and remove unecessary whitespace
 Plug 'ntpeters/vim-better-whitespace'
 
-"Git tools
-"Plug 'tpope/vim-fugitive'
+"gdb frontend
+Plug 'puremourning/vimspector'
 
 "Chapel lang highlight
 Plug '~/.chapel-highlight-vim/'
 
 Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown', 'do': 'yarn install'}
+
+Plug 'preservim/vim-markdown'
 
 call plug#end()
 
@@ -130,12 +135,6 @@ vmap <C-_>   <Plug>NERDCommenterToggle<CR>gv
 autocmd FileType c,cpp,objc,cu,h,hpp nnoremap <C-i> :<C-u>ClangFormat<CR>
 autocmd FileType c,cpp,objc,cu,h,hpp vnoremap <C-i> :ClangFormat<CR>
 
-nmap <C-i>   <Plug>ClangFormat
-vmap <C-i>   <Plug>ClangFormat<CR>gv
-
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)w
-
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>"
 
 " Toggle transparent background
@@ -160,12 +159,14 @@ endif
 let g:vim_isort_config_overrides = { 'float_to_top': 'true' }
 
 "allow mouse input
-set mouse=a
+set mouse=n
+set ttymouse=xterm2
 
 "external clipboard
 set clipboard=unnamedplus
 
 let g:NERDTreeWinSize=45
+let g:NERDTreeWinPos = "right"
 
 "Set the colorscheme (installed in .vim dir)
 "colorscheme atom-dark-256
