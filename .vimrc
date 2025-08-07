@@ -80,9 +80,17 @@ Plug 'preservim/vim-markdown'
 
 call plug#end()
 
-"navigate tabs with shift+left shift+right
-nnoremap <S-Left> :tabprevious<CR>
-nnoremap <S-Right> :tabnext<CR>
+" Go to tab by number
+noremap <leader>1 1gt
+noremap <leader>2 2gt
+noremap <leader>3 3gt
+noremap <leader>4 4gt
+noremap <leader>5 5gt
+noremap <leader>6 6gt
+noremap <leader>7 7gt
+noremap <leader>8 8gt
+noremap <leader>9 9gt
+noremap <leader>0 :tablast<cr>
 
 "default yapf style as google style
 let g:yapf_style = "google"
@@ -90,6 +98,8 @@ let g:yapf_style = "google"
 if !exists('g:formatters_typescriptreact')
     let g:formatters_typescriptreact = ['tsfmt']
 endif
+
+let g:formatdef_latexindent = '"latexindent -"'
 
 " Start NERDTree when Vim starts with a directory argument.
 autocmd StdinReadPre * let s:std_in=1
@@ -135,20 +145,13 @@ vmap <C-_>   <Plug>NERDCommenterToggle<CR>gv
 autocmd FileType c,cpp,objc,cu,h,hpp nnoremap <C-i> :<C-u>ClangFormat<CR>
 autocmd FileType c,cpp,objc,cu,h,hpp vnoremap <C-i> :ClangFormat<CR>
 
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>"
+nmap <C-i>   <Plug>ClangFormat
+vmap <C-i>   <Plug>ClangFormat<CR>gv
 
-" Toggle transparent background
-let t:is_transparent = 0
-function! Toggle_transparent()
-    if t:is_transparent == 0
-        hi Normal guibg=NONE ctermbg=NONE
-        let t:is_transparent = 1
-    else
-        set background=dark
-        let t:is_transparent = 0
-    endif
-endfunction
-nnoremap <leader>t : call Toggle_transparent()<CR>
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)w
+
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>"
 
 autocmd BufNewFile,BufRead *.xonsh set syntax=python
 
