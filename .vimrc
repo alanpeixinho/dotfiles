@@ -1,7 +1,8 @@
 
 
 " to work on any bash like xonsh
-set shell=/usr/bin/bash
+set shell=/bin/bash
+let $SHELL ='/bin/bash'
 
 call plug#begin('~/.vim/plugged')
 
@@ -71,6 +72,9 @@ Plug 'ntpeters/vim-better-whitespace'
 "gdb frontend
 Plug 'puremourning/vimspector'
 
+" fugitive git wrapper
+Plug 'tpope/vim-fugitive'
+
 "Chapel lang highlight
 Plug '~/.chapel-highlight-vim/'
 
@@ -101,6 +105,8 @@ endif
 
 let g:formatdef_latexindent = '"latexindent -"'
 
+let g:instant_markdown_autostart = 0
+
 " Start NERDTree when Vim starts with a directory argument.
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
@@ -111,13 +117,6 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in
 
 "F2 toggle NERDTree open/close
 nnoremap <Home> :NERDTreeToggle<CR>
-
-"ctrl t as terminal toggle
-noremap  <C-T>  :FloatermToggle<CR>
-noremap! <C-T>  <Esc>:FloatermToggle<CR>
-tnoremap <C-T>  <C-\><C-n>:FloatermToggle<CR>
-
-
 
 "fzf remap for file search
 nnoremap <C-F> :BLines<CR>
