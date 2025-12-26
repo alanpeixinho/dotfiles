@@ -82,6 +82,12 @@ Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown', 'do': 'yarn in
 
 Plug 'preservim/vim-markdown'
 
+"man pages
+Plug 'vim-utils/vim-man'
+
+"multiline editing
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+
 call plug#end()
 
 " Go to tab by number
@@ -169,6 +175,10 @@ set clipboard=unnamedplus
 
 let g:NERDTreeWinSize=45
 let g:NERDTreeWinPos = "right"
+
+let g:VM_maps = {}
+let g:VM_maps["Add Cursor Down"] = '<C-S-Down>'
+let g:VM_maps["Add Cursor Up"]= '<C-S-Up>'
 
 "Set the colorscheme (installed in .vim dir)
 "colorscheme atom-dark-256

@@ -213,18 +213,16 @@ bar {
   font pango:Monaco Bold 11
   status_command i3status
   colors {
-    separator #666666
-    background #202020
+    separator #888888
+    background #000000
     statusline #ffffff
-    focused_workspace #6BA9D7 #3A7DAF #f0f0f0
-    active_workspace #333333 #5f676a #ffffff
-    inactive_workspace #333333 #222222 #888888
-    urgent_workspace #2f343a #900000 #ffffff
+    focused_workspace #6BA9D7 #3A7DAF #f0f0f0 #f0f0f0
+    active_workspace #333333 #5f676a #ffffff #ffffff
+    inactive_workspace #333333 #222222 #888888 #888888
+    urgent_workspace #2f343a #900000 #ffffff #ffffff
   }
 }
 client.focused #3A7DAF #3A7DAF #ffffff #2e9ef4
 client.focused_inactive #333333 #5f676a #ffffff #484e50
 client.unfocused #333333 #222222 #888888 #292d2e
 client.urgent #2f343a #900000 #ffffff #900000
-
-bindsym $mod+Escape exec --no-startup-id sh -c 'setxkbmap $(setxkbmap -query | grep layout | grep -q us_intl && echo br || echo us_intl)'
